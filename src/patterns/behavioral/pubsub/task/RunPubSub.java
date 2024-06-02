@@ -1,8 +1,8 @@
 package patterns.behavioral.pubsub.task;
 
-import patterns.behavioral.pubsub.task.pubsub.Subscriber;
-import patterns.behavioral.pubsub.task.pubsub.Video;
-import patterns.behavioral.pubsub.task.pubsub.VideoChannel;
+import patterns.behavioral.pubsub.task.pubsub.impl.sub.Subscriber;
+import patterns.behavioral.pubsub.task.pubsub.impl.event.Video;
+import patterns.behavioral.pubsub.task.pubsub.impl.pub.VideoChannel;
 
 import java.time.LocalDateTime;
 
