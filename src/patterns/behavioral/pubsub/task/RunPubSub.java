@@ -31,10 +31,13 @@ public class RunPubSub {
 
         Subscriber s1 = new Subscriber("Bob");
         Subscriber s2 = new Subscriber("Jack");
+        s1.registerSubscriber(channel.getAdmin());
+        s2.registerSubscriber(channel.getAdmin());
 
         channel.registerSubscriber(s1);
+        channel.registerSubscriber(s2);
         channel.addVideo(bandsOfNewYork);
         channel.addVideo(santaBarbara);
-        channel.registerSubscriber(s2);
+
     }
 }
