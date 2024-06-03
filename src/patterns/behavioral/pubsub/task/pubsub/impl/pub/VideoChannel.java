@@ -5,15 +5,16 @@ import patterns.behavioral.pubsub.task.pubsub.Event;
 import patterns.behavioral.pubsub.task.pubsub.Listener;
 import patterns.behavioral.pubsub.task.pubsub.Publisher;
 import patterns.behavioral.pubsub.task.pubsub.impl.event.Video;
+import patterns.behavioral.pubsub.task.pubsub.impl.sub.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
-  Description object of video channel(model).
+ * Description object of video channel(model).
  */
 public class VideoChannel implements Publisher<Video> {
-    private final List subscribers;
+    private final List<Listener> subscribers;
     private final List<Video> videos;
     private ChannelAdmin admin;
 
@@ -29,6 +30,7 @@ public class VideoChannel implements Publisher<Video> {
 
     public void addVideo(Video video) {
         videos.add(video);
+        notifySubscribers(()->video);
 
     }
 
@@ -42,16 +44,21 @@ public class VideoChannel implements Publisher<Video> {
 
     @Override
     public void registerSubscriber(Listener<Video> listener) {
-
+        subscribers.add(listener);
+        for (Video video : videos) {
+            listener.process(() -> video);
+        }
     }
 
     @Override
     public void unregisterSubscriber(Listener<Video> listener) {
-
+        subscribers.remove(listener);
     }
 
     @Override
     public void notifySubscribers(Event<Video> event) {
-
+        for (Listener subscriber:subscribers){
+            subscriber.process(event);
+        }
     }
 }

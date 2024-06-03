@@ -28,7 +28,13 @@ public class RunPubSub {
                 1990, 1, 1, 0, 0), "Santa Barbara", 1000000
         );
 
+
         Subscriber s1 = new Subscriber("Bob");
         Subscriber s2 = new Subscriber("Jack");
+
+        channel.registerSubscriber(s1);
+        channel.addVideo(bandsOfNewYork);
+        channel.addVideo(santaBarbara);
+        channel.registerSubscriber(s2);
     }
 }

@@ -24,7 +24,7 @@ public class Video implements Event<Video> {
 
 
     @Override
-    public Video apper() {
+    public Video appear() {
         return this;
     }
 }
